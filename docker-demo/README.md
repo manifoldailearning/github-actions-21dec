@@ -33,5 +33,10 @@ docker run -p 8889:5000 --name catgif-demo catgif-dec22
 
 docker build -t yourusername/image_name .
 docker push yourusername/image_name
+
+docker ps -a
+docker logs <container_name>
+docker inspect <container_name>
+docker exec -it <container_name> bash
 ```
 
