@@ -9,3 +9,10 @@
 }
 
 ```
+
+# Docker Commands
+
+```bash
+docker build -t streamlit-demo . 
+docker run -p 8501:8501 streamlit-demo
+```

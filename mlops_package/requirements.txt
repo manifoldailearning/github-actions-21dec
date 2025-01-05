@@ -1,7 +1,9 @@
 # setting to specific version
-pandas==1.0.3
+pandas==2.2.0
 # set to minimum version
 numpy>=1.18.1
 # set to latest version
 scikit-learn
 joblib==1.2.0
+streamlit
+setuptools
