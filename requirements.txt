@@ -1,5 +1,5 @@
 # setting to specific version
-pandas
-numpy
+pandas==2.2.0
+numpy==2.0.0
 scikit-learn
 joblib==1.2.0
