@@ -16,3 +16,19 @@
 docker build -t streamlit-demo . 
 docker run -p 8501:8501 streamlit-demo
 ```
+
+```json
+
+{
+  "sepal_length": 2,
+  "sepal_width": 3,
+  "petal_length": 5,
+  "petal_width": 4
+}
+
+```
+
+```bash
+python main.py
+
+```

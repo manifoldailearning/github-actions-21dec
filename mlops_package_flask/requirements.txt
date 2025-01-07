@@ -7,3 +7,4 @@ scikit-learn
 joblib==1.2.0
 streamlit
 setuptools
+flask
