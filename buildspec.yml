@@ -1,0 +1,26 @@
+# Create buildspec to read the code from the repository and run the build and save the artifacts in the S3 bucket.
+
+version: 0.2
+env:
+  variables:
+    S3_BUCKET: "s3://bucket-name-examplesagemaker-us-east-1-866824485776"
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
+      - echo print environemnt variablee
+      - echo printenv
+  build:
+    commands:
+      - echo "Building the code..."
+      - python mlops_package_fastapi/train.py
+  
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'mlops_package_fastapi'
+  discard-paths: yes
