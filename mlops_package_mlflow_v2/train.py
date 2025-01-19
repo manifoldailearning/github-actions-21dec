@@ -21,36 +21,36 @@ def main():
     mlflow.set_tracking_uri("http://localhost:5001")
 
     # mlflow.set_experiment("Iris_Classification_1")
+    for x in [1,2,3,4]:
+        with mlflow.start_run(run_name="Iris_Classification_1"):
+            # 100,50,150,200,250,300,350,400,450,500
+            
+            # log params
 
-    with mlflow.start_run(run_name="Iris_Classification_1"):
-        
-        
-        # log params
+            mlflow.log_param("model_name", "Logistic Regression")
+            mlflow.log_param("random_state", 42)
+            mlflow.log_param("test_size", 0.2)
 
-        mlflow.log_param("model_name", "Logistic Regression")
-        mlflow.log_param("random_state", 42)
-        mlflow.log_param("test_size", 0.2)
+            data_path = config.file_path 
 
-        data_path = config.file_path 
+            df = load_iris_data(data_path)
 
-        df = load_iris_data(data_path)
+            X = df.drop('species', axis=1)
+            y = df['species']
 
-        X = df.drop('species', axis=1)
-        y = df['species']
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+            model = IrisClassifier()
+            model.fit(X_train, y_train)
 
-        model = IrisClassifier()
-        model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+            accuracy = accuracy_score(y_test, y_pred)
+            print("Accuracy:", accuracy)
+            mlflow.log_metric("accuracy", accuracy)
 
-        y_pred = model.predict(X_test)
-        accuracy = accuracy_score(y_test, y_pred)
-        print("Accuracy:", accuracy)
-        mlflow.log_metric("accuracy", accuracy)
-
-        # Save the model
-        mlflow.sklearn.log_model(model, artifact_path="model")
-        joblib.dump(model,os.path.join(config.SAVE_MODEL_DIR, config.MODEL_NAME))
+            # Save the model
+            mlflow.sklearn.log_model(model, artifact_path="model")
+            joblib.dump(model,os.path.join(config.SAVE_MODEL_DIR, config.MODEL_NAME))
 
 if __name__ == '__main__':
     main()
