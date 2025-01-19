@@ -32,3 +32,9 @@ docker run -p 8501:8501 streamlit-demo
 python main.py
 
 ```
+
+mlflow server \
+    --backend-store-uri sqlite:///mlflow.db \
+    --default-artifact-root ./mlruns \
+    --host 0.0.0.0 \
+    --port 5000
