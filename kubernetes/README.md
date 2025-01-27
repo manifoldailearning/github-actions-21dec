@@ -12,7 +12,7 @@ kubectl get nodes
 kubectl apply -f pod.yml
 kubectl describe pod first-pod # get detailed info about running pod
 
-kubectl apply -f svc-cloud.yml # Deploy the service 
+kubectl port-forward services/my-service 30002:8002
 
 kubectl get svc # Check external IP of the service
 
